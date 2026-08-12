@@ -42,9 +42,9 @@ public class 문자열압축 {
 		
 		for(int i=0; i<arr.length; i+=n) {
 			String set;
-			if(i+n <= arr.length-1) {
+			if(i+n <= arr.length-1) { 
 				set = String.valueOf(Arrays.copyOfRange(arr, i, i+n));
-			} else {
+			} else { //남은 문자가 n개 미만이면
 				set = String.valueOf(Arrays.copyOfRange(arr, i, arr.length));
 			}
 			

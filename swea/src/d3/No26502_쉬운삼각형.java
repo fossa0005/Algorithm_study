@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class 쉬운삼각형 {
+public class No26502_쉬운삼각형 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
