@@ -33,28 +33,28 @@ public class No2805_농작물수확하기 {
 			
 			int res = 0;
 			int start = n/2; 
-			int cnt = 1; //한 줄당 수확하는 갯수
+			int limit = 1; //한 줄당 수확하는 갯수
 			for(int y = 0; y<=n/2; y++) {
-				for(int x=start, i=1;  i<=cnt;  i++, x++) {
+				for(int x=start, cnt=1;  cnt<=limit;  x++, cnt++) {
 					//System.out.print(arr[y][x]);
 					res += arr[y][x];
 				}
 				
-				cnt+= 2;
+				limit+= 2;
 				start--;
 				
 			}
 			
-			cnt=n-2;
+			limit=n-2;
 			start=1;
 			
 			for(int y= n-n/2; y<n; y++) {
-				for(int x=start, i=1;  i<=cnt;  i++, x++) {
+				for(int x=start, cnt=1;  cnt<=limit;  x++, cnt++) {
 					//System.out.print(arr[y][x]);
 					res += arr[y][x];
 				}
 				
-				cnt-= 2;
+				limit-= 2;
 				start++;
 			}
 			

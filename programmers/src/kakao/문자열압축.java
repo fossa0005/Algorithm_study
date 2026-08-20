@@ -19,7 +19,7 @@ public class 문자열압축 {
 	public static int solution(String s) {
 		int answer = s.length();
 		
-		for(int n=1; n<=s.length(); n++) {
+		for(int n=1; n<=s.length() / 2; n++) {
 			int compressed = listMaker(n,s);
 			if(compressed < answer) {
 				answer = compressed;
