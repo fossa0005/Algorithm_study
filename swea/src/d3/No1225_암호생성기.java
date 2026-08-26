@@ -53,6 +53,8 @@ public class No1225_암호생성기 {
 			
 			
 		}
-		}
+		
+		sc.close();
+	}
 
 }

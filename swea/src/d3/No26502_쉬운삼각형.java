@@ -90,7 +90,7 @@ public class No26502_쉬운삼각형 {
 		
 			
 		}
-	
+		sc.close();
 	}
 
 }

@@ -32,7 +32,7 @@ public class No1208_Flatten {
 			System.out.println("#" +t + " " + res);
 			
 		}
-		
+	sc.close();	
 	}
 	
 	

@@ -65,7 +65,7 @@ public class No5215_햄버거다이어트_fail {
 			System.out.println("#" + t + " " + score);
 			
 		}
-		
+		sc.close();	
 	}
 
 

@@ -62,7 +62,7 @@ public class No2805_농작물수확하기 {
 			
 			
 		}
-			
+		sc.close();		
 	}
 	
 }

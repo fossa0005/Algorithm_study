@@ -1,8 +1,6 @@
 package d3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -45,7 +43,7 @@ public class No1244_최대상금 {
 		//3 2 7 8 6
 		
 		
-		
+		sc.close();
 	
 	}
 

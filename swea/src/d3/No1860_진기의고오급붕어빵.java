@@ -49,7 +49,7 @@ public class No1860_진기의고오급붕어빵 {
 			System.out.println("#" + t + " " + res);
 		}
 		
-	
+		sc.close();
 	}
 	
 }

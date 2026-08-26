@@ -36,7 +36,7 @@ public class No1209_Sum {
 			System.out.println("#" + t + " " + sums[3]);
 			
 		}
-		
+		sc.close();	
 	}
 	
 	

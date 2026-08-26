@@ -36,7 +36,7 @@ public class No1206_View {
 		
 		}
 		
-
+	sc.close();
 	}
 
 }

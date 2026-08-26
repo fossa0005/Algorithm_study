@@ -41,7 +41,7 @@ public class No5215_햄버거다이어트 {
                 System.out.println("#" + t + " " + max_taste);
             
         }
- 
+        sc.close();
     }
      
     static void dfs(int i, int currentTaste, int currentKal) {

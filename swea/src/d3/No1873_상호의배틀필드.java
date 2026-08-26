@@ -38,7 +38,6 @@ public class No1873_상호의배틀필드 {
 			
 			
 			//커맨드세팅
-			int n = sc.nextInt();
 			commands = sc.next().toCharArray();
 			
 		
@@ -69,7 +68,7 @@ public class No1873_상호의배틀필드 {
 			
 		}
 		
-		
+		sc.close();	
 		
 	}
 	
