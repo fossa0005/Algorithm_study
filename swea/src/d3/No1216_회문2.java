@@ -33,8 +33,6 @@ public class No1216_회문2 {
 			System.out.println("#" + t + " " + ans);
 			
 		}
-		
-		sc.close();
 	
 	}
 		
@@ -73,9 +71,8 @@ public class No1216_회문2 {
 	
 	
 	static void checkCol(int c) {
-		
-		for(int n=100; n>ans; n--) { //회문길이(긴것부터검사)
-			
+		//회문길이(긴것부터검사)
+		for(int n=100; n>ans; n--) { 
 				//시작점
 				for(int start=0; start<=100-n; start++) { 
 					boolean flag = true; //회문인지

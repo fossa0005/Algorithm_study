@@ -50,7 +50,7 @@ public class No5215_햄버거다이어트 {
             if (currentKal > limit) {
                 return;
             }
-             
+            
             if (i==N) {
                 if(currentTaste > max_taste) {
                     max_taste = currentTaste;
