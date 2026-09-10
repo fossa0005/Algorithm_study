@@ -38,7 +38,7 @@ public class No5215_햄버거다이어트 {
             dfs(0,0,0);
              
                  
-                System.out.println("#" + t + " " + max_taste);
+            System.out.println("#" + t + " " + max_taste);
             
         }
         sc.close();

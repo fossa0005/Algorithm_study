@@ -7,7 +7,7 @@ public class No1247_최적경로 { //순열문제
 	static int N;
 	static int[][] customers; //고객 좌표
 	static int[] home = new int[2];
-	static int[] company = new int[2];
+	static int[] work = new int[2];
 	static boolean[] visited;
 	static int minDistnace;
 	
@@ -25,8 +25,8 @@ public class No1247_최적경로 { //순열문제
 			minDistnace = Integer.MAX_VALUE;
 			visited = new boolean[N]; 
 			
-			company[0] = sc.nextInt();
-			company[1] = sc.nextInt();
+			work[0] = sc.nextInt();
+			work[1] = sc.nextInt();
 			home[0] = sc.nextInt();
 			home[1] = sc.nextInt();
 			customers = new int[N][];
@@ -38,43 +38,42 @@ public class No1247_최적경로 { //순열문제
 			
 			
 			for(int i=0; i<N; i++) {
-				dfs(i, 0, 0, 0);
+				visited[i] = true;
+				int currDistance = Math.abs(customers[i][0] - work[0]) +  Math.abs(customers[i][1] - work[1]);
+				dfs(i, 1, currDistance);
+				visited[i] = false;
 			}
-			
 			
 			System.out.println("#" + t + " " + minDistnace);
 		}
 		
 	}
 	
-	static void dfs(int i, int prior, int cnt, int currDistance) {
+	static void dfs(int i, int cnt, int currDistance) {
 		
-		visited[i] = true;
-		cnt++;
 		
-		if (cnt == 1) currDistance += Math.abs(customers[i][0] - company[0]) +  Math.abs(customers[i][1] - company[1]);
-		else currDistance += Math.abs(customers[i][0] - customers[prior][0]) +  Math.abs(customers[i][1] - customers[prior][1]); 
-		
-		if(currDistance > minDistnace) {
-			visited[i] = false;
+		//최소거리 초과시 백트래킹
+		if(currDistance >= minDistnace) {
 			return;
 		}
 		
-		if(cnt==N) { //모든 고객 다 봄
-			currDistance += Math.abs(customers[i][0] - home[0]) +  Math.abs(customers[i][1] - home[1]);
+		//모든 고객 다 봄
+		if(cnt==N) { 
+			currDistance += Math.abs(customers[i][0] - home[0]) 
+						+ Math.abs(customers[i][1] - home[1]);
 			if(currDistance < minDistnace) minDistnace = currDistance;
-			visited[i] = false;
 			return;
 		}
 		
 		
 		for(int j=0; j<N; j++) {
 			if(visited[j] == true) continue;
-			dfs(j, i, cnt, currDistance);
+			visited[j] = true;
+			int distance = Math.abs(customers[i][0] - customers[j][0]) 
+						+ Math.abs(customers[i][1] - customers[j][1]);  
+			dfs(j, cnt+1, currDistance + distance);
+			visited[j] = false;
 		}
-		
-		visited[i] = false; //초기화
-		
 	}
 
 }
