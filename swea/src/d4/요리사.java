@@ -53,12 +53,9 @@ public class 요리사 {
 	}
 	
 	
-	static void dfs(int i, int cnt) {
+	static void dfs(int start, int cnt) {
 		
-		if(cnt> N/2) return;
-		
-		if(i == N) {
-			if(cnt == N/2) {
+		if(cnt == N/2) {
 			//System.out.println(Arrays.toString(added));
 			
 			ArrayList<Integer> group1 = new ArrayList<>();
@@ -69,17 +66,15 @@ public class 요리사 {
 			}
 			groups.add(group1);
 			groups.add(group2);
-			}
 			return;
 		}
+			
 		
-		//i번째 재료 추가	
-		added[i] = true;
-		dfs(i+1, cnt+1);
-		
-		//i번째 재료 추가안함
-		added[i] = false; 
-		dfs(i+1, cnt);
+		for(int j=start; j<N; j++) {
+			added[j] = true;
+			dfs(j+1, cnt+1);
+			added[j] = false;
+		}
 	}
 	
 	static int getSngy(ArrayList<Integer> group) {

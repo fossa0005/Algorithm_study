@@ -33,13 +33,7 @@ public class No8275_햄스터 {
 }
 	
 	
-		
 	
-	
-		
-
-
-
 
 class Constraint {
 	int l, r, s;
