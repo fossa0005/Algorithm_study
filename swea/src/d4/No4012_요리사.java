@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class 요리사 {
+public class No4012_요리사 {
 	static int[][] sngy;
 	static boolean[] added;
 	static ArrayList<ArrayList<Integer>> groups; //[[a,b], [c,d], ......] 두그룹씩 조합

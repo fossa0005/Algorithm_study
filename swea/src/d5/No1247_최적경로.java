@@ -65,7 +65,9 @@ public class No1247_최적경로 { //순열문제
 			return;
 		}
 		
-		
+		//i=1, j=2일때 1-2-3-...  여기서 2를 방문처리한걸 초기화안하면 
+		//i=1, j=3일때 1-3-2-.... 이 경우의수가 탐색이 안됨
+		//j 방문처리는 for문 한번에 대해서만 유지되어야함
 		for(int j=0; j<N; j++) {
 			if(visited[j] == true) continue;
 			visited[j] = true;

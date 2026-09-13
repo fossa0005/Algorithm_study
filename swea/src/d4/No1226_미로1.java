@@ -30,6 +30,7 @@ public class No1226_미로1 {
 				}
 			}
 			
+			arr[startY][startX] = 1;
 			dfs(startY, startX);
 			
 			System.out.println("#" + t + " " + ans);
@@ -42,34 +43,18 @@ public class No1226_미로1 {
 		
 		if(ans == 1) return; //도달할 수 있는 한 경우의 수 찾았으면 더이상 탐색 불필요
 		 
-		if(arr[currY][currX] == 3) {
-			ans = 1;
-			return;
-		}
-		
-		if(! canGo(currY, currX)) { //막다른길
-			return;
-		}
-		
 		
 		for(int i=0; i<4; i++) {
 			if(arr[currY+dy[i]][currX+dx[i]] == 1) continue;
+			if(arr[currY+dy[i]][currX+dx[i]] == 3) {
+				ans = 1;
+				return;
+			}
 			
-			arr[currY][currX] = 1; //지금노드 방문처리하고
-			dfs(currY+dy[i], currX+dx[i]); //다음 노드로 내려감
-			arr[currY][currX] = 0;
+			arr[currY+dy[i]][currX+dx[i]] = 1; //다음노드 방문처리
+			dfs(currY+dy[i], currX+dx[i]); //다음 노드의 자식 경우의수 완전탐색
 		}
 	}
 	
-	
-	static boolean canGo(int y, int x) {
-		boolean res = false;
-		
-		for(int i=0; i<4; i++) {
-			if(arr[y+dy[i]][x+dx[i]] != 1) res = true;
-		}
-		
-		return res;
-	}
 	
 }

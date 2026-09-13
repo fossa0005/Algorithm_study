@@ -1,4 +1,4 @@
-package d4;
+package A형기출;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
