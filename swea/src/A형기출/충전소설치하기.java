@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class 충전소설치하기 {
     static int[][] arr;
-    static int[][] houses; //[r,c, x 허용거리]
+    static int[][] houses; //[r,c, k허용거리]
     static ArrayList<int[]> ranges; //설치가능 후보 좌표들
     static int[][] chargers; //설치한 좌표들
     static int N;
     static int ans, minDistance;
     
     //설치범위 내 조합 1 -> 안되면 2
-    // ㄴ모든 집 연결되는지 for(각 집) 두 설치소 중 하나라도 거리 <= x; 이중 최소 거리 더함
+    // ㄴ모든 집 연결되는지 for(각 집) 두 설치소 중 최소거리 <=x 
     // 
     public static void main(String args[]) throws Exception {
          Scanner sc = new Scanner(System.in);
@@ -113,14 +113,14 @@ public class 충전소설치하기 {
         for(int[] house : houses) {
             int a = house[0];
             int b = house[1]; 
-            int x = house[2];
+            int k = house[2];
             
-            for(int r=a-x; r<=a+x; r++) {
-                for(int c=b-x; c<=b+x; c++) {
+            for(int r=a-k; r<=a+k; r++) {
+                for(int c=b-k; c<=b+k; c++) {
                     if(r<0 || r>30 || c<0 || c>30) continue;
                     if(arr[r][c] == 1) continue; //집이랑 충전소 겹치면안됨
                     int distance = Math.abs(r-a) + Math.abs(c-b);
-                    if(distance <= x) {
+                    if(distance <= k) {
                         ranges.add(new int[]{r, c});
                     }
                 }

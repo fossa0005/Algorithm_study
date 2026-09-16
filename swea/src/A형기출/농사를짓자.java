@@ -1,35 +1,31 @@
 package A형기출;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 public class 농사를짓자 {
 	static int N, M;
 	static int[][] arr;
-	static int[] dr = new int[]{0, -1, 0, +1}; //(절대좌표)우상좌하
+	static int[][] seedCnt;
+	static int[] dr = new int[]{0, -1, 0, +1}; //(절대방향)우상좌하
 	static int[] dc = new int[]{+1, 0, -1, 0};
-	static int pos; //보는 방향의 델타배열 인덱스
+	static int dir; //보는 방향
 	static int cr, cc; //현재 좌표
-	static int seedCnt, harvestCnt, day; //심은 횟수, 수확횟수, 현재 날짜
+	static int harvestCnt, day; //수확횟수, 현재 날짜
 	static int max;
-	//N길이 M일
+	
 	//모든 시작가능위치에 대해 수확량 검사하고 최대값 갱신
 	
 	//씨앗 
-	 //수확가능일 = day + 1 + 3 + cnt; fifo배열로	
+	 //수확가능일 = day + 1 + 3 + seedCnt	
 	
 	//오전
-	
 	//seed()
 	//harvest()
 	
-	
 	//오후
-	//static pos로 현재 바라보는 dir 저장
-	//move(); //이동
-	//getNestDir(); 
-	//boolean canMove(); //이동 가능 방향 반환, 없으면 -1
+	//move() //이동
+	//getDir() //이동 가능 방향 반환, 없으면 -1
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -40,6 +36,7 @@ public class 농사를짓자 {
 			M = sc.nextInt();
 			arr = new int[N][N];
 			max = 0;
+			
 			
 			for(int r=0; r<N; r++) {
 				for(int c=0; c<N; c++) {
@@ -53,15 +50,14 @@ public class 농사를짓자 {
 					for(int p=0; p<4; p++) {
 						cr = r;
 						cc = c;
-						pos = p;
-						seedCnt = 0; harvestCnt =0;
+						dir = p;
+						harvestCnt =0;
+						seedCnt = new int[N][N];
 						
 						simulate();
 						clearArr();
 						
 						if (harvestCnt > max) {
-							//System.out.println("시작위치:" + r + " " + c + "pos" + p);
-							//System.out.println("종료위치:" + cr + " " + cc);
 							max = harvestCnt;
 						}
 						
@@ -91,8 +87,8 @@ public class 농사를짓자 {
 	}
 	
 	static void seed() {
-		seedCnt++;
-		arr[cr][cc] = day + 1 + 3 + seedCnt;
+		seedCnt[cr][cc] = seedCnt[cr][cc] + 1;
+		arr[cr][cc] = day + 1 + 3 + seedCnt[cr][cc];
 	}
 	
 	static void harvest() {
@@ -107,16 +103,16 @@ public class 농사를짓자 {
 		int res = -1;
 		
 		for(int n=-1; n<=2; n++) { //보는방향의 우상좌하 갈수있는지 검사
-			int dir = pos+n; //델타배열의 인덱스로
-			if(dir < 0) dir = 4+dir;
-			if(dir > 3) dir = dir-4;
+			int ndir = dir+n; //델타배열의 인덱스로
+			if(ndir < 0) ndir = 4+ndir;
+			if(ndir > 3) ndir = ndir-4;
 			
-			int nr = cr + dr[dir];
-			int nc = cc + dc[dir];
+			int nr = cr + dr[ndir];
+			int nc = cc + dc[ndir];
 			if (nr < 0 || nr > N-1 || nc < 0 || nc > N-1) continue;
 			if(arr[nr][nc] == 1) continue;
 			if(arr[nr][nc] == 0 || day >= arr[nr][nc]) {
-				res = dir;
+				res = ndir;
 				break;
 			}
 		}
@@ -126,13 +122,13 @@ public class 농사를짓자 {
 	
 	//이동가능시 움직임
 	static void move() {
-		int dir = getDir();
-		if(dir != -1) {
-			int nr = cr + dr[dir];
-			int nc = cc + dc[dir];
+		int ndir = getDir();
+		if(ndir != -1) {
+			int nr = cr + dr[ndir];
+			int nc = cc + dc[ndir];
 			cr = nr;
 			cc = nc;
-			pos  = dir;
+			dir  = ndir;
 		}
 	}
 	
