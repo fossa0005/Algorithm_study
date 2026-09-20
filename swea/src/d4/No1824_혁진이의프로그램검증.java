@@ -2,13 +2,12 @@ package d4;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 public class No1824_혁진이의프로그램검증 {
 	static String ans;
 	static int R,C;
-	static int dir; //현재위치 명령까지 반영 후 방향
+	static int dir; 
 	static char[][] arr;
 	static boolean[][][][] visited; // r,c, 진입시 방향, 진입시 메모리 
 	static ArrayDeque<Status> stack;
@@ -55,11 +54,11 @@ public class No1824_혁진이의프로그램검증 {
 		
 		program:
 		while(! stack.isEmpty()) {
-			Status status = stack.pop();
-			int cr = status.cr;
-			int cc = status.cc;
-			int dir = status.dir;
-			int memory = status.memory;
+			Status now = stack.pop();
+			int cr = now.cr;
+			int cc = now.cc;
+			int dir = now.dir;
+			int memory = now.memory;
 			visited[cr][cc][dir][memory] = true; //들어와서 방문처리
 			
 			char command = arr[cr][cc];
@@ -70,7 +69,7 @@ public class No1824_혁진이의프로그램검증 {
 					int ndir = switchDir(command, memory); 
 					int nr = (cr+dr[ndir] +R) % R;
 					int nc = (cc+dc[ndir] + C) % C;
-					if(visited[nr][nc][ndir][memory]) return;
+					if(visited[nr][nc][ndir][memory]) continue;
 					stack.push(new Status(nr, nc, ndir, memory));
 					
 					break;
@@ -79,7 +78,7 @@ public class No1824_혁진이의프로그램검증 {
 					int nmemory = calMemory(command, memory);
 					int nr = (cr+dr[dir] +R) % R;
 					int nc = (cc+dc[dir] + C) % C;
-					if(visited[nr][nc][dir][nmemory]) return;
+					if(visited[nr][nc][dir][nmemory]) continue;
 					stack.push(new Status(nr, nc, dir, nmemory));
 					
 					break;
@@ -101,7 +100,7 @@ public class No1824_혁진이의프로그램검증 {
 				case '.' : {
 					int nr = (cr+dr[dir] +R) % R;
 					int nc = (cc+dc[dir] + C) % C;
-					if(visited[nr][nc][dir][memory]) return;
+					if(visited[nr][nc][dir][memory]) continue;
 					stack.push(new Status(nr, nc, dir, memory));
 					break;
 				}

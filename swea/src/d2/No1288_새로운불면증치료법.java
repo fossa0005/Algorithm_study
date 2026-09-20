@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class No1288_새로운불면증치료법 {
 	static HashSet<Character> set; 
 	static int num;
+	static int input;
 	static String numString;
 	
 	//
@@ -13,23 +14,29 @@ public class No1288_새로운불면증치료법 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		num = sc.nextInt();
-		numString = String.valueOf(num);
+		int T = sc.nextInt();
 		
-		while(true) {
-			for(int i=0; i<numString.length(); i++) {
-				set.add(numString.charAt(i));
+		for(int t=1; t<=T; t++) {
+			input = sc.nextInt();
+			num = input;
+			numString = String.valueOf(num);
+			set = new HashSet<Character>();
+			int n=1;
+			while(true) {
+				for(int i=0; i<numString.length(); i++) {
+					set.add(numString.charAt(i));
+					if(set.size() == 10) break;
+				}
 				
 				if(set.size() == 10) break;
+				
+				num = input*n++;
+				numString = String.valueOf(num); 
 			}
 			
-			if(set.size() == 10) break;
-			
-			num = num*2;
-			numString = String.valueOf(num); 
+			System.out.println("#" + t + " " + num);
 		}
 		
-		System.out.println("#" + " " + num);
 	
 	}
 	
