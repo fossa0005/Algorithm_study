@@ -118,7 +118,7 @@ public class 충전소설치하기 {
             for(int r=a-k; r<=a+k; r++) {
                 for(int c=b-k; c<=b+k; c++) {
                     if(r<0 || r>30 || c<0 || c>30) continue;
-                    if(arr[r][c] == 1) continue; //집이랑 충전소 겹치면안됨
+                    if(arr[r][c] == 1) continue; //집터 제외
                     int distance = Math.abs(r-a) + Math.abs(c-b);
                     if(distance <= k) {
                         ranges.add(new int[]{r, c});
