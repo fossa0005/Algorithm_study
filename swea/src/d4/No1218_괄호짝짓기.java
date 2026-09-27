@@ -2,8 +2,9 @@ package d4;
 
 import java.util.Scanner;
 
+//정수 방식
+//열리고 닫히는 쌍의 개수 유효성은 판별되나, ( [ ) ], ))(( 이런 말도안되는 괄호도 맞다고 함
 public class No1218_괄호짝짓기 {
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		char[] data;
