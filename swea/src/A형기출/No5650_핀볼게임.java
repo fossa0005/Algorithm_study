@@ -18,46 +18,49 @@ public class No5650_핀볼게임 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		N = sc.nextInt();
+		int T = sc.nextInt();
 		
-		arr = new int[N][N];
-		wormholes = new HashMap<>();
-		max_score = 0;
-		
+		for (int t=1; t<=T; t++) {
+			N = sc.nextInt();
+			
+			arr = new int[N][N];
+			wormholes = new HashMap<>();
+			max_score = 0;
+			
 
-		for(int r=0; r<N; r++) {
-			for(int c=0; c<N; c++) {
-				arr[r][c] = sc.nextInt();
-				if(arr[r][c]>=6 && arr[r][c] <= 10) { //웜홀 저장
-					int key = arr[r][c];
-					if(wormholes.containsKey(key)) wormholes.put(key*-1, new Integer[] {r, c});
-					else wormholes.put(key, new Integer[]{r, c});
-				}
-			}
-		}
-		System.out.println(wormholes);
-		score=0;
-		simulate(0, 4, 0);
-		System.out.println(score);
-		
-		/*
-		System.out.println(wormholes);
-		
-		for(int r=0; r<N; r++) {
-			for(int c=0; c<N; c++) {
-				for(int d=0; d<4; d++) {
-					if(arr[r][c] == 0) {
-						score = 0;
-						simulate(r, c, d);
-						System.out.println("점수: " + score);
-						if(score > max_score) max_score = score;
+			for(int r=0; r<N; r++) {
+				for(int c=0; c<N; c++) {
+					arr[r][c] = sc.nextInt();
+					if(arr[r][c]>=6 && arr[r][c] <= 10) { //웜홀 저장
+						int key = arr[r][c];
+						if(wormholes.containsKey(key)) {
+							wormholes.put(key*-1, new Integer[] {r, c});
+							arr[r][c] = key*-1;
+						}
+						else wormholes.put(key, new Integer[]{r, c});
 					}
 				}
 			}
+			
+			
+			for(int r=0; r<N; r++) {
+				for(int c=0; c<N; c++) {
+					for(int d=0; d<4; d++) {
+						if( (r==0 && d==1) || (r==N-1 && d==3) || (c==0 && d==2) || (c==N-1 && d==0)) continue;
+						if(arr[r][c] == 0) {
+							score = 0;
+							//System.out.println("시작점: " + r + " " + c);
+							simulate(r, c, d);
+							//System.out.println("점수: " + score);
+							if(score > max_score) max_score = score;
+						}
+					}
+				}
+			}
+			
+			
+			System.out.println("#" + t + " " + max_score);
 		}
-		
-		System.out.println(max_score);
-		*/
 	}
 	
 	static void simulate(int sr, int sc, int sdir) {
@@ -67,7 +70,7 @@ public class No5650_핀볼게임 {
 		
 		go:
 		while(true) {
-			System.out.println("현재위치:" + cr + " " + cc + " " + arr[cr][cc]);
+			//System.out.println("현재위치:" + cr + " " + cc + " " + arr[cr][cc]);
 			int now = arr[cr][cc];
 			switch(now) {
 				case 0 : {
@@ -86,7 +89,12 @@ public class No5650_핀볼게임 {
 				case 7 :
 				case 8 :
 				case 9 :
-				case 10 : {
+				case 10 : 
+				case -6 :
+				case -7 :
+				case -8 :
+				case -9 :
+				case -10: {
 					meetWormhole(now);
 					break;
 				}
@@ -96,14 +104,14 @@ public class No5650_핀볼게임 {
 			int nr = cr + dr[dir];
 			int nc = cc + dc[dir];
 			
+			if (nr==sr && nc==sc) { //다음이 시작점
+				break go;
+			}
+			
 			if(nr<0 || nr>=N || nc<0 || nc>=N) { //다음이 벽
 				score++;
 				dir = goBack();
 			} 
-			
-			else if (nr==sr && nc==sc) { //다음이 시작점
-				break go;
-			}
 			
 			else { 
 				cr = nr;
