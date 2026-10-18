@@ -42,10 +42,11 @@ public class No5650_핀볼게임 {
 			}
 			
 			
+			
 			for(int r=0; r<N; r++) {
 				for(int c=0; c<N; c++) {
 					for(int d=0; d<4; d++) {
-						if( (r==0 && d==1) || (r==N-1 && d==3) || (c==0 && d==2) || (c==N-1 && d==0)) continue;
+						//if( (r==0 && d==1) || (r==N-1 && d==3) || (c==0 && d==2) || (c==N-1 && d==0)) continue;
 						if(arr[r][c] == 0) {
 							score = 0;
 							//System.out.println("시작점: " + r + " " + c);
@@ -59,6 +60,7 @@ public class No5650_핀볼게임 {
 			
 			
 			System.out.println("#" + t + " " + max_score);
+			
 		}
 	}
 	
@@ -103,19 +105,19 @@ public class No5650_핀볼게임 {
 			int nr = cr + dr[dir];
 			int nc = cc + dc[dir];
 			
-			if (nr==sr && nc==sc) { //다음이 시작점
-				break go;
-			}
-			
 			if(nr<0 || nr>=N || nc<0 || nc>=N) { //다음이 벽
 				score++;
 				dir = goBack();
-			} 
-			
-			else { 
+				
+			} else {
 				cr = nr;
 				cc = nc;
 			}
+			
+			if (cr==sr && cc==sc) { //시작점
+				break go;
+			}
+			
 		}
 		
 	}
