@@ -114,7 +114,7 @@ public class No5650_핀볼게임 {
 				cc = nc;
 			}
 			
-			if (cr==sr && cc==sc) { //시작점
+			if (cr==sr && cc==sc) { //시작점검사
 				break go;
 			}
 			
